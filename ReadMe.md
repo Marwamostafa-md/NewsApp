@@ -20,7 +20,7 @@ The project is based on the **MVVM (Model - View - ViewModel)** architecture:
 - **Kotlin** – Primary programming language.
 - **Android Jetpack Components** – ViewModel
 - **Retrofit** – For network operations.
-- **Kotlin Coroutines** – For asynchronous programming.
+- **Coroutines + Flow** for asynchronous programming
 - **Hilt** – For dependency injection.
 
 ### Prerequisites
