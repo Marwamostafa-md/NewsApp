@@ -17,11 +17,11 @@ The project is based on the **MVVM (Model - View - ViewModel)** architecture:
 
 ## 🛠 Tech Stack
 
-- **Kotlin**
-- **Jetpack Components** (LiveData, ViewModel, Room, Navigation)
-- **Retrofit** for networking
-- **Coroutines + Flow** for asynchronous programming
-- **Material Design** for UI
+- **Kotlin** – Primary programming language.
+- **Android Jetpack Components** – ViewModel
+- **Retrofit** – For network operations.
+- **Kotlin Coroutines** – For asynchronous programming.
+- **Hilt** – For dependency injection.
 
 ### Prerequisites
 
@@ -35,8 +35,8 @@ The project is based on the **MVVM (Model - View - ViewModel)** architecture:
    ```bash
    git clone https://github.com/Marwamostafa-md/NewsApp.git
    cd NewsApp
-1.Open the project in Android Studio.
+2.Open the project in Android Studio.
 
-2.Sync Gradle and build the project.
+3.Sync Gradle and build the project.
 
-3.Run the app on your emulator or physical device.
+4.Run the app on your emulator or physical device.
