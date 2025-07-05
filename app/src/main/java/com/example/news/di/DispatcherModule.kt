@@ -1,5 +1,4 @@
 package com.example.news.di
-
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,9 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
 import javax.inject.Singleton
 
+const val DISPATCHER_IO = "IO"
+const val DISPATCHER_MAIN = "Main"
+const val DISPATCHER_DEFAULT = "Default"
+
 @Module
 @InstallIn(SingletonComponent::class)
 object DispatcherModule {
+
     @Provides
     @Singleton
     @Named(DISPATCHER_IO)
@@ -33,7 +37,3 @@ object DispatcherModule {
         return Dispatchers.Default
     }
 }
-
-const val DISPATCHER_IO = "IO"
-const val DISPATCHER_MAIN = "Main"
-const val DISPATCHER_DEFAULT = "Default"

@@ -1,10 +1,9 @@
-package com.example.data.newsremote
+package com.example.data.newssource
 
 import com.example.data.newsmodelsdata.AllNewsModel
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
-interface NewsService {
+interface NewsRemoteSource {
     @GET("latest")
     suspend fun getAllNews(
         @Query("q") query: String? = null,
@@ -12,5 +11,5 @@ interface NewsService {
         @Query("language") language: String? = null,
         @Query("category") category: String? = null,
 
-    ):AllNewsModel
+        ):AllNewsModel
 }

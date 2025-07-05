@@ -1,5 +1,3 @@
-package com.example.news.views
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import coil.request.CachePolicy
 import com.example.news.NewsModelsApp.NewsUI
 import com.example.news.R
 import com.example.news.viewmodels.newsviewmodels.NewsViewModel
@@ -82,8 +83,8 @@ fun NewsScreen(
                         modifier = Modifier.fillMaxSize()
                     ) {
                         state?.newsUIS?.filterNotNull()?.let { news ->
-                            itemsIndexed(news) {index,item ->
-                                RecipeCard(new =item, onClick = { onNewsClick(index) })
+                            itemsIndexed(news) { index, item ->
+                                RecipeCard(new = item, onClick = { onNewsClick(index) })
                             }
                         }
                     }
@@ -111,7 +112,18 @@ fun NewsScreen(
 }
 
 @Composable
-private fun RecipeCard(new:NewsUI, onClick: () -> Unit) {
+private fun RecipeCard(new: NewsUI, onClick: () -> Unit) {
+    val context = LocalContext.current
+
+    val imageRequest = ImageRequest.Builder(context)
+        .data(new.imageUrl)
+        .crossfade(true)
+        .diskCachePolicy(CachePolicy.ENABLED)
+        .memoryCachePolicy(CachePolicy.ENABLED)
+        .placeholder(R.drawable.bg_news_placeholder)
+        .error(R.drawable.bg_news_placeholder)
+        .build()
+
     Card(
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -128,11 +140,9 @@ private fun RecipeCard(new:NewsUI, onClick: () -> Unit) {
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(8.dp)
             )
-           AsyncImage(
-               model = new.imageUrl,
-               placeholder = painterResource(R.drawable.bg_news_placeholder),
-               error = painterResource(R.drawable.bg_news_placeholder),
-                contentDescription =new.title,
+            AsyncImage(
+                model = imageRequest,
+                contentDescription = new.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -148,5 +158,5 @@ private fun RecipeCard(new:NewsUI, onClick: () -> Unit) {
                 modifier = Modifier.padding(8.dp)
             )
         }
-    }}
-
+    }
+}

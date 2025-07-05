@@ -1,6 +1,6 @@
 package com.example.news.di
 
-import com.example.data.newsremote.NewsService
+import com.example.data.newssource.NewsRemoteSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,7 +60,7 @@ object NewsNetworkModule {
 
     @Provides
     @Singleton
-    fun provideRepo(retrofit: Retrofit): NewsService {
-        return retrofit.create(NewsService::class.java)
+    fun provideRepo(retrofit: Retrofit): NewsRemoteSource {
+        return retrofit.create(NewsRemoteSource::class.java)
     }
 }
