@@ -6,7 +6,7 @@
 -Fetch leatest news and detailed information.
 -  Fetch data from a remote news API
 - ☀ Clean UI with Material Design principles
-
+- Offline Support: Access recipes offline with local caching using Room database.
 ## 🏗 Architecture
 
 The project is based on the **MVVM (Model - View - ViewModel)** architecture:
